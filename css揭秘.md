@@ -86,12 +86,20 @@ input, select, button {
 
 ---
 
-尽量使用简写，因为你需要把默认属性给覆盖
+    尽量使用简写，因为你需要把默认属性给覆盖（后续工作人员也可能会增加一些功能）
 
 > 中间 /，为了防止歧义
 
 ```
 background: url(png) no-repeat top right / 2em 2em;
+```
+
+---  
+    css-- 列表扩散  如果只为某个属性提供一个值，那它会扩散并应用到列表中的每一项  
+> 简化了代码，方便之后改动
+```
+background: url(tr.png) top right,url(tr.png) top right,url(tr.png) top right;
+background-repeat: no-repeat;
 ```
 
 ---
@@ -114,7 +122,7 @@ background: url(png) no-repeat top right / 2em 2em;
 
 > 可以使用 box-shadow 来绘制外边框，它支持通过`,`来建立多个阴影，但阴影不会响应鼠标事件，可以使用 insert 来让阴影显现在内部，此时需要设置足够宽度
 
-> 投影并不会影响布局
+> 投影并不会影响布局，不受box-sizing控制，可以通过margin和padding来控制
 
 `box-shadow: 0 0 0 10px #655 inset, 0 0 0 15px deeppink inset;`
 
@@ -246,3 +254,31 @@ div {
 > 如果想要圆角，将 linear-gradient 改成 radial-gradient
 
 ---
+    适应颜色变化的渐变色   
+> 把半透明的白色或者黑色，叠加在主色调上
+`background: #58a linear-gradient(hsla(0,0%,100%,.2), transparent);`  
+
+---
+
+    媒体查询需要你的css原本就是弹性可伸缩的，这样你只需要添加很少一部分媒体查询，否则大量的媒体查询会给你后期的维护造成很大困扰  
+--- 
+
+    css自带的特性比预处理器提供的强大许多，因为css拿到某个值，不必等到页面渲染后，就比如百分比值，预处理器在渲染前是不知道它具体的数值的
+```
+ul {
+    --accent-color: purple;
+}
+li {
+    --accent-color: rebeccapurple;
+}
+li {
+    color: var(--accent-color);
+}
+```
+
+---  
+
+    背景色会扩散到整个容器，使用background-clip来控制背景色位置  
+
+---  
+
