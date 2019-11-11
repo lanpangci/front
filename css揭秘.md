@@ -148,7 +148,7 @@ background: url() no-repeat bottom right #58a;
 backgeound-position: right 20px bottom 10px;
 ```
 
-> 可以通过 background-origin 直接让背景图片的距离是 padding 的距离  
+> 可以通过 background-origin 直接让背景图片的距离是 padding 的距离，默认是padding-box  
 > `background-origin: content-box;`
 
 > 但如果你还想要再偏移一点距离，只能使用第一种方法
@@ -164,7 +164,7 @@ backgeound-position: right 20px bottom 10px;
     background: #655;
     padding: .8em;
 }
-    .wrapper > div {
+.wrapper > div {
     background: tan;
     border-radius: .8em;
     padding: 1em;
@@ -281,4 +281,28 @@ li {
     背景色会扩散到整个容器，使用background-clip来控制背景色位置  
 
 ---  
+    投影实现  
+```
+先画个与元素尺寸相同的rgba(0,0,0,0.5)的矩形  
+按照box-shadow属性进行偏移和高斯模糊  
+与元素重叠部分被切除，所以投影是在元素上方的
+text-shadow是在元素下方
+```
 
+    单侧投影  
+```
+box-shadow: 0 5px 4px -4px black;
+```
+    左右两侧投影  
+> 分别实现左右两边的单侧投影  
+
+    对于伪元素和一些透明的形状，box-shadow会忽略他们，这时候可以使用滤镜（blur() grayscale() drop-shadow()）  
+```
+drop-shadow和box-shadow属性一样，不过不支持扩张半径、inset、和逗号分隔多层语法，drop-shadow本质是给不透明的形状加上阴影，所以他会给阴影加上阴影
+```  
+---  
+    连字符断行  
+`hyphens: auto`
+
+---  
+    
